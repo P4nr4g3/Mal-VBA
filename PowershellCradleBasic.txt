@@ -25,8 +25,8 @@ Dim str As String
 
 Dim filepath As String
   filepath = ActiveDocument.Path + "\macro.txt"
-  Wait (2)
-  Shell "type " + filepath, vbNormalFocus
+  'Wait (2)
+  'Shell "type " + filepath, vbNormalFocus
 End Sub
 
 Sub Wait(n As Long)
@@ -41,3 +41,4 @@ Do
 Loop Until Now >= DateAdd("s", n, t)
 
 End Sub
+
